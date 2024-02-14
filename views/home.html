@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css"/>
+    <title>Lego Collection</title>
+</head>
+<body>
+    <!-- nav bar code -->
+    <div class="navbar bg-base-100">
+        <div class="flex-1">
+          <a class="btn btn-ghost normal-case text-xl" href="/">Lego Collection</a>
+        </div>
+        <div class="dropdown">
+            <label tabindex="0" class="btn btn-ghost sm:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            </label>
+            <ul tabindex="0" class="menu menu-sm dropdown-content right-0 mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+              <li><a href="/about">About</a></li>
+              <li>
+                <details>
+                  <summary>
+                    Theme
+                  </summary>
+                  <ul class="p-2 bg-base-100">
+                    <li><a href="/lego/sets?theme=technic">Technic</a></li>
+                    <li><a href="/lego/sets?theme=Classic Castle">Classic Castle</a></li>
+                    <li><a href="/lego/sets?theme=Supplemental">Supplemental</a></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </div>
+        <div class="navbar-center hidden sm:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li><a href="/about">About</a></li>
+            <li>
+              <details>
+                <summary>Theme</summary>
+                <ul class="p-2 bg-base-100 right-0">
+                  <li><a href="/lego/sets?theme=Technic">Technic</a></li>
+                  <li><a href="/lego/sets?theme=Classic Castle">Classic Castle</a></li>
+                  <li><a href="/lego/sets?theme=Supplemental">Supplemental</a></li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- nav bar code -->
+
+      <!-- container -->
+      <div class="md:container md:mx-auto">
+        <div class="hero min-h-screen bg-base-200">
+            <div class="hero-content flex-col lg:flex-row">
+              <img src="https://images.freeimages.com/images/large-previews/337/lego-hollywood-1252890.jpg" class="max-w-sm rounded-lg shadow-2xl " />
+              <div>
+                <h1 class="text-5xl font-bold">Lego Collections!</h1>
+                <p class="py-6">Check out our finest Collection of Lego sets. Handpicked for everyone's taste. Click the button bellow!!!</p>
+                <button class="btn btn-primary"><a href="/lego/sets">Get Started</a></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- grid -->
+          <div class="container mx-auto">
+            <div class="grid grid-cols-1 mb-4">
+                <h1 class="border-2 text-center text-4xl font-bold p-4">Sample Lego Collections available!</h1>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="border-2 flex items-center justify-center">
+                <div class="card md:w-96 bg-base-100 shadow-xl pt-4">
+                    <figure  class="aspect-w-3 aspect-h-2">
+                        <img class="object-cover w-60 h-full" src="https://cdn.rebrickable.com/media/sets/001-1.jpg" alt="Lego" />
+                    </figure>
+                    <div class="card-body">
+                      <h2 class="card-title">Gears</h2>
+                      <p class="text-justify">This set was released in America (USA/CAN) by Samsonite in 1965. It was re-released in 1969 as an educational set (322-4). It was never released in Europe.</p>
+                      <div class="card-actions justify-center">
+                        <button class="btn btn-primary"><a href="/lego/sets/001-1">Buy Now</a></button>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+              <div class="border-2 flex items-center justify-center">
+                <div class="card md:w-96 bg-base-100 shadow-xl pt-4">
+                    <figure  class="aspect-w-3 aspect-h-2">
+                      <img class="object-cover w-60 h-full" src="https://cdn.rebrickable.com/media/sets/002253963-1.jpg" alt="lego" />
+                    </figure>
+                    <div class="card-body">
+                      <h2 class="card-title">Legend of Chima: Corbeaux et Gorilles</h2>
+                      <p class="text-justify">Title translates as: Ravens and Gorillas <br>
+
+                        French: Corbeaux et Gorilles <br>
+                        Polish: Kruki i Goryle.</p>
+                      <div class="card-actions justify-center">
+                        <button class="btn btn-primary"><a href="/lego/sets/002253963-1">Buy Now</a></button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="border-2 flex items-center justify-center">
+                <div class="card md:w-96 bg-base-100 shadow-xl pt-4">
+                    <figure  class="aspect-w-3 aspect-h-2">
+                        <img class="object-cover w-60 h-full" src="https://cdn.rebrickable.com/media/sets/0011-3.jpg" alt="lego" />
+                    </figure>
+                    <div class="card-body">
+                      <h2 class="card-title">Castle 2 for 1 Bonus Offer</h2>
+                      <p class="text-justify">LEGO 0011-3 2 For 1 Bonus Offer was a 151 piece Castle set released in 1987. It was also called Castle 2 for 1 Bonus Offer and contained 2 Castle themed sets.</p>
+                      <div class="card-actions justify-center">
+                        <button class="btn btn-primary"><a href="/lego/sets/0011-3">Buy Now</a></button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+      
+
+      <!-- container -->
+
+
+    
+</body>
+</html>
