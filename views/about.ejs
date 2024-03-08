@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+        <!-- nav bar code -->
+        <%- include('partials/navbar', {page: '/about'}) %>
+            <!-- nav bar code -->
+
+
+            <!-- container -->
+      <div class="md:container md:mx-auto">
+        <div class="hero min-h-screen bg-base-200">
+            <div class="hero-content flex-col lg:flex-row">
+              <div>
+                <h1 class="text-5xl font-bold text-center">About!</h1>
+                <h4 class="py-6 text-center font-bold">All about me!</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                    <div class="border-2">
+                        <img  class="max-w-5rem max-h-5rem object-cover" src="https://i.pinimg.com/originals/8a/8b/50/8a8b50da2bc4afa933718061fe291520.jpg" alt="dota">
+                    </div>
+                    <div class="border-2 p-8">
+                        <p class="text-justify">Juan Rivera, aspiring software developer from Colombia. Currently in 3rd semester of computer programming at Seneca Polytechnic. 
+                            This is a test website made for WEB322 utilizing tailwind and DaisyUI. In my free time 
+                            I like to play guitar, play videogames and go to the gym.</p>
+                    </div>
+                  </div>  
+            </div>
+            </div>
+          </div>         
+      </div>
+      
+
+      <!-- container -->
+    
+</body>
+</html>

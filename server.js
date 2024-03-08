@@ -1,16 +1,14 @@
 /********************************************************************************
-* WEB322 – Assignment 03
+* WEB322 – Assignment 04
 *
 * I declare that this assignment is my own work in accordance with Seneca's
 * Academic Integrity Policy:
 *
 * https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 *
-* Name: Juan Pablo Rivera Guerra Student ID: __137647228_________ Date: ___14-feb-2024________
+* Name: Juan Pablo Rivera Guerra Student ID: __137647228_________ Date: ___07-mar-2024________
 *
 ********************************************************************************/
-
-
 
 const path = require('path');
 
@@ -23,18 +21,19 @@ const port = 3000;
 legoData.initialize();
 
 
-
 //declaring static path folder for express.js
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.set('view engine', 'ejs');
 
 // Route: GET "/"
 app.get('/', async(req, res)=>{
     try {
-        const filePath = path.join(__dirname, 'views', 'home.html');
-        res.sendFile(filePath);
+        //const filePath = path.join(__dirname, 'views', 'home.html');
+        res.render("home");
     } catch (error) {
         console.error(error);
-        res.status(404).send('Home not found');
+        res.status(404).render("404", {message: '404 Error loading home page, error: ' + error});
     }
 });
 
@@ -45,13 +44,13 @@ app.get('/lego/sets', async (req, res) => {
         
         if(theme){
             const setsByTheme = await legoData.getSetsByTheme(theme);
-            res.json(setsByTheme);
+            res.render("sets",{sets: setsByTheme});
         } else {
             const allSets = await legoData.getAllSets();
-            res.json(allSets);
+            res.render("sets",{sets: allSets});
         }
     } catch (error) {
-        res.status(404).send('404 Error retrieving Lego sets: ' + error);
+        res.status(404).render("404", {message: '404 Error No Sets found for a matching theme: ' + error});
     }
 });
 
@@ -60,9 +59,9 @@ app.get('/lego/sets/:code', async (req, res) => {
     try {
         const setCode = req.params.code;
         const setByNum = await legoData.getSetsByNum(setCode);
-        res.json(setByNum);
+        res.render("set", {set: setByNum});
     } catch (error) {
-        res.status(404).send('Error getting set by number: ' + error);
+        res.status(404).render("404", {message: '404 Error No Sets found for a specific set num: ' + error});
     }
 });
 
@@ -70,10 +69,10 @@ app.get('/lego/sets/:code', async (req, res) => {
 app.get('/about', async(req, res)=>{
     try {
         const filePath = path.join(__dirname, 'views', 'about.html');
-        res.sendFile(filePath);
+        res.render("about");
     } catch (error) {
         console.error(error);
-        res.status(404).send('about.html Not found');
+        res.status(404).render("404", {message: '404 Error: ' + error});
     }
 
 })
@@ -81,7 +80,7 @@ app.get('/about', async(req, res)=>{
 
 app.use((req, res, next) => {
     const filePath = path.join(__dirname, 'views', '404.html');
-    res.status(404).sendFile(filePath);
+    res.status(404).render("404", {message: '404 Error. No view matched for a specific route'});
   });
 
 
