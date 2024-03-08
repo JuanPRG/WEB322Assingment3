@@ -1,71 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sets</title>
-    <link rel="stylesheet" href="/css/main.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sets</title>
+  <link rel="stylesheet" href="/css/main.css" />
 </head>
+
 <body>
+  <!-- nav bar code -->
+  <%- include('partials/navbar', {page:'/lego/sets'}) %>
     <!-- nav bar code -->
-    <%- include('partials/navbar', {page:'/lego/sets'}) %>
-      <!-- nav bar code -->
 
 
-      <div class="hero min-h-screen bg-base-200">
-        <div class="hero-content text-center">
-          <div class="max-w-3xl mx-auto"> <!-- Adjust max-w-3xl to your preferred width -->
-            <h1 class="text-5xl font-bold">Collection</h1>
-      
-            <div class="flex justify-between py-6">
-              <a class="hover:underline font-bold text-blue-500" href="/lego/sets?theme=technic">Technic</a>
-              <a class="hover:underline font-bold text-blue-500" href="/lego/sets?theme=Classic Castle">Classic Castle</a>
-              <a class="hover:underline font-bold text-blue-500" href="/lego/sets?theme=Supplemental">Supplemental</a>
-            </div>
-      
-            <div class="space-y-4">
-              <table class="w-full table-auto">
-                <thead>
+    <div class="hero min-h-screen bg-base-200">
+      <div class="hero-content text-center">
+        <div class="max-w-3xl mx-auto"> <!-- Adjust max-w-3xl to your preferred width -->
+          <h1 class="text-5xl font-bold">Collection</h1>
+
+          <div class="flex justify-between py-6">
+            <a class="hover:underline font-bold text-blue-500" href="/lego/sets?theme=technic">Technic</a>
+            <a class="hover:underline font-bold text-blue-500" href="/lego/sets?theme=Classic Castle">Classic Castle</a>
+            <a class="hover:underline font-bold text-blue-500" href="/lego/sets?theme=Supplemental">Supplemental</a>
+          </div>
+
+          <div class="space-y-4">
+            <table class="w-full table-auto">
+              <thead>
+                <tr>
+                  <th class="font-bold text-2xl py-4">Img</th>
+                  <th class="font-bold text-2xl py-4">Name</th>
+                  <th class="font-bold text-2xl py-4">Theme</th>
+                  <th class="font-bold text-2xl py-4">Year</th>
+                  <th class="font-bold text-2xl py-4 px-2">#Parts</th>
+                  <th class="font-bold text-2xl py-4">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (const set of sets) { %>
                   <tr>
-                    <th class="font-bold text-2xl py-4">Img</th>
-                    <th class="font-bold text-2xl py-4">Name</th>
-                    <th class="font-bold text-2xl py-4">Theme</th>
-                    <th class="font-bold text-2xl py-4">Year</th>
-                    <th class="font-bold text-2xl py-4 px-2" >#Parts</th>
-              <th class="font-bold text-2xl py-4">Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% for (const set of sets) { %>
-                    <tr>
-                      <td>
-                        <div class="avatar">
-                          <div class="w-8 rounded">
-                            <img src="<%= set.img_url %>" alt="Tailwind-CSS-Avatar-component" />
-                          </div>
+                    <td>
+                      <div class="avatar">
+                        <div class="w-8 rounded">
+                          <img src="<%= set.img_url %>" alt="Tailwind-CSS-Avatar-component" />
                         </div>
-                      </td>
-                      <td><%= set.name %></td>
-                      <td>
-                        <a href="/lego/sets?theme=<%= set.theme %>">
-                          <button class="btn"><%= set.theme %></button>
-                        </a>
-                      </td>
-                      <td><%= set.year %></td>
-                      <td class="px-2"><%= set.num_parts %></td>
-                      <td>
-                        <a href="/lego/sets/<%= set.set_num %>">
-                          <button class="btn">Details</button>
-                        </a>
-                      </td>
-                    </tr>
+                      </div>
+                    </td>
+                    <td>
+                      <%= set.name %>
+                    </td>
+                    <td>
+                      <a href="/lego/sets?theme=<%= set.theme %>">
+                        <button class="btn">
+                          <%= set.theme %>
+                        </button>
+                      </a>
+                    </td>
+                    <td>
+                      <%= set.year %>
+                    </td>
+                    <td class="px-2">
+                      <%= set.num_parts %>
+                    </td>
+                    <td>
+                      <a href="/lego/sets/<%= set.set_num %>">
+                        <button class="btn">Details</button>
+                      </a>
+                    </td>
+                  </tr>
                   <% } %>
-                </tbody>
-              </table>
-            </div>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-    
+    </div>
+
 </body>
+
 </html>
