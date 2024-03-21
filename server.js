@@ -17,7 +17,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-
+app.use(express.urlencoded({extended:true}));
 legoData.initialize();
 
 
@@ -76,6 +76,96 @@ app.get('/about', async(req, res)=>{
     }
 
 })
+
+
+// Route to handle GET request to /lego/addSet
+app.get('/lego/addSet', async (req, res) => {
+    try {
+        // Make a request to the getAllThemes() function
+        const themes = await legoData.getAllThemes();
+        
+        // Render the addSet view with the themes
+        res.render('addSet', { themes: themes });
+    } catch (error) {
+        // Handle errors
+        console.error('Error fetching themes:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// POST route to handle adding a new LEGO set
+app.post('/lego/addSet', async (req, res) => {
+    try {
+        // Extract data from req.body
+        const setData = req.body;
+        
+        // Make a request to the addSet(setData) function
+        await legoData.addSet(setData);
+        
+        // Redirect user to the "/lego/sets" route upon success
+        res.redirect('/lego/sets');
+    } catch (error) {
+        // Render the "500" view with an error message if an error occurred
+        console.error('Error adding LEGO set:', error);
+        res.render('500', { message: `I'm sorry, but we have encountered the following error: ${error}` });
+    }
+});
+// Define the route to handle GET request to "/lego/editSet/:num"
+
+app.get('/lego/editSet/:num', async (req, res) => {
+    try {
+        // Extract the setNum from the route parameter
+        const setNum = req.params.num;
+
+        // Make a request to getSetByNum(setNum) function
+        const setData = await legoData.getSetsByNum(setNum);
+
+        // Make a request to getAllThemes() function
+        const themeData = await legoData.getAllThemes();
+
+        // Render the "edit" view with theme data and set data
+        res.render('editSet', { themes: themeData, set: setData });
+    } catch (error) {
+        // Render the "404" view with an appropriate error message
+        res.status(404).render('404', { message: error });
+    }
+});
+
+// Define the route to handle POST request to "/lego/editSet"
+app.post('/lego/editSet', async (req, res) => {
+    try {
+        // Extract data from req.body
+        const setNum = req.body.set_num;
+        const setData = req.body;
+
+        // Make a request to editSet(set_num, setData) function
+        await legoData.editSet(setNum, setData);
+
+        // Redirect user to the "/lego/sets" route upon success
+        res.redirect('/lego/sets');
+    } catch (error) {
+        // Render the "500" view with an error message if an error occurred
+        res.render('500', { message: `I'm sorry, but we have encountered the following error: ${error}` });
+    }
+});
+
+// Define the route to handle GET request to "/lego/deleteSet/:num"
+app.get('/lego/deleteSet/:num', async (req, res) => {
+    try {
+        // Extract the setNum from the route parameter
+        const setNum = req.params.num;
+
+        // Make a request to deleteSet(setNum) function
+        await legoData.deleteSet(setNum);
+
+        // Redirect user to the "/lego/sets" route upon success
+        res.redirect('/lego/sets');
+    } catch (error) {
+        // Render the "500" view with an error message if an error occurred
+        res.render('500', { message: `I'm sorry, but we have encountered the following error: ${error}` });
+    }
+});
+
 
 
 app.use((req, res, next) => {

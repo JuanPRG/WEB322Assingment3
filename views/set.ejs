@@ -1,71 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Set</title>
-    <link rel="stylesheet" href="/css/main.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set</title>
+  <link rel="stylesheet" href="/css/main.css" />
 </head>
+
 <body>
-        <!-- nav bar code -->
-        <%- include('partials/navbar', {page: ''}) %>
-            <!-- nav bar code -->
+  <!-- nav bar code -->
+  <%- include('partials/navbar', {page: '' }) %>
+    <!-- nav bar code -->
 
 
-            <!-- container -->
-      <div class="md:container md:mx-auto">
-        <div class="hero min-h-screen bg-base-200">
-            <div class="hero-content flex-col lg:flex-row">
-              <div>
-                <h1 class="text-5xl font-bold text-center"><%= set.name %></h1>
-                <h4 class="py-6 text-center font-bold">Below, you will find detailed information about the set: <%= set.name %></h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-                    <div class="border-2">
-                        <img class="max-w-5rem max-h-5rem object-cover" src="<%= set.img_url %>" alt="Tailwind-CSS-Avatar-component" />
-                    </div>
-                    <div class="border-2 p-8">
-                        <p><span class="font-bold">Name:</span>
-                            <%= set.name %>
-                        </p>
-                        <p><span class="font-bold">Year:</span>
-                            <%= set.year %>
-                        </p>
-                        <p><span class="font-bold">Theme:</span>
-                            <%= set.theme %>
-                        </p>
-                        <p><span class="font-bold">#Parts:</span>
-                            <%= set.num_parts %>
-                        </p>
-                        <br>
-                        <div id="quote-container" class="text-center">
-                            <p id="quote-content" class="text-2xl italic font-light mb-4"></p>
-                            <p id="quote-author" class="text-lg font-bold"></p>
-                        </div>
-                        <a href="#" onclick="history.back(); return false;" class="text-blue-500 hover:underline"><button class="btn">Back</button></a>
-                    </div>
-                  </div>  
+    <!-- container -->
+    <div class="md:container md:mx-auto">
+      <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content flex-col lg:flex-row">
+          <div>
+            <h1 class="text-5xl font-bold text-center">
+              <%= set.name %>
+            </h1>
+            <h4 class="py-6 text-center font-bold">Below, you will find detailed information about the set: <%= set.name
+                %>
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+              <div class="border-2">
+                <img class="max-w-5rem max-h-5rem object-cover" src="<%= set.img_url %>"
+                  alt="Tailwind-CSS-Avatar-component" />
+              </div>
+              <div class="border-2 p-8">
+                <p><span class="font-bold">Name:</span>
+                  <%= set.name %>
+                </p>
+                <p><span class="font-bold">Year:</span>
+                  <%= set.year %>
+                </p>
+                <p><span class="font-bold">Theme:</span>
+                  <%= set.Theme.name %>
+                </p>
+                <p><span class="font-bold">#Parts:</span>
+                  <%= set.num_parts %>
+                </p>
+                <br>
+                <div id="quote-container" class="text-center">
+                  <p id="quote-content" class="text-2xl italic font-light mb-4"></p>
+                  <p id="quote-author" class="text-lg font-bold"></p>
+                </div>
+                <a href="/lego/editSet/<%= set.set_num %>"
+                  class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2">
+                  Edit
+                </a>
+                <a href="/lego/deleteSet/<%= set.set_num %>"
+                  onclick="return confirm('Are you sure you want to delete this set?')"
+                  class="inline-block bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-2">
+                  Delete Set
+                </a>
+                <a href="#" onclick="history.back(); return false;"
+                  class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2">
+                  Back
+                </a>
+              </div>
             </div>
-            </div>
-          </div>         
+          </div>
+        </div>
       </div>
-      
+    </div>
 
-      <!-- container -->
-      <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          // Fetch the data from "https://quotable.io/random"
-          fetch("https://quotable.io/random")
-            .then(response => response.json())
-            .then(data => {
-              // Update the DOM with the fetched data
-              const quoteContentElement = document.getElementById("quote-content");
-              const quoteAuthorElement = document.getElementById("quote-author");
-    
-              quoteContentElement.textContent = data.content;
-              quoteAuthorElement.textContent = `- ${data.author}`;
-            })
-            .catch(error => console.error("Error fetching data:", error));
-        });
-      </script>
+
+    <!-- container -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Fetch the data from "https://quotable.io/random"
+        fetch("https://quotable.io/random")
+          .then(response => response.json())
+          .then(data => {
+            // Update the DOM with the fetched data
+            const quoteContentElement = document.getElementById("quote-content");
+            const quoteAuthorElement = document.getElementById("quote-author");
+
+            quoteContentElement.textContent = data.content;
+            quoteAuthorElement.textContent = `- ${data.author}`;
+          })
+          .catch(error => console.error("Error fetching data:", error));
+      });
+    </script>
 </body>
+
 </html>
